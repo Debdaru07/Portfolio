@@ -185,17 +185,16 @@
         <form action="">
             <div class="input-group">
                 <div class="input-box">
-                    <input type="text" placeholder="Full Name">
-                    <input type="text" placeholder="Email">
+                    <input type="text" placeholder="Full Name" required>
+                    <input type="text" placeholder="Email" required>
                 </div>
                 <div class="input-box">
-                    <input type="number" placeholder="Phone Number">
-                    <input type="text" placeholder="Subject">
+                    <input type="number" placeholder="Phone Number" required>
+                    <input type="text" placeholder="Subject" required>
                 </div>
             </div>
-            
             <div class="input-group-2">
-                <textarea name="" id="" cols="30" rows="10" placeholder="Your Message"></textarea>
+                <textarea name="" id="" cols="30" rows="10" placeholder="Your Message" required></textarea>
                 <input type="Submit" value="Send Message" class="btn">
             </div>
         </form>
@@ -220,5 +219,34 @@
         </p>
     </footer>
     <script src="script.js"></script>
+    <script>
+        document.getElementById("contactForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+    
+            const formData = {
+                fullName: document.getElementById("fullName").value,
+                email: document.getElementById("email").value,
+                phoneNumber: document.getElementById("phoneNumber").value,
+                subject: document.getElementById("subject").value,
+                message: document.getElementById("message").value
+            };
+            fetch('http://localhost:3000/send-email', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formData)
+            })
+            .then(response => response.json())
+            .then(data => {
+                if(data.success) {
+                    alert("Message sent successfully!");
+                } else {
+                    alert("Failed to send message.");
+                }
+            })
+            .catch(error => console.error('Error:', error));
+        });
+    </script>
 </body>
 </html>

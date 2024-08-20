@@ -808,16 +808,20 @@ span{
     html {
         font-size: 45%; /* Further reduce base font size */
     }
+
     .home-content {
         font-size: 2rem;
     }
+
     .home-content h1 {
         font-size: 3.5rem;
     }
+
     .btn {
         padding: 0.8rem 2rem;
         font-size: 1.4rem;
     }
+
     .btn-group {
         flex-direction: column;
         gap: 1rem;
